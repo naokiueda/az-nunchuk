@@ -1,3 +1,16 @@
+/*
+This file is a part of AZ-Nunchuk project.
+https://az-nunchuk.fun/
+
+Author: Naoki Ueda, 2020/09/03
+
+This project depends on following external libraries.
+"ArduinoNunchuk"  http://www.gabrielbianconi.com/projects/arduinonunchuk/
+"protothreads" http://dunkels.com/adam/pt/download.html
+
+CC BY 4.0
+This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+*/
 #ifndef __UTIL_H__
 #define __UTIL_H__
 //main methods
