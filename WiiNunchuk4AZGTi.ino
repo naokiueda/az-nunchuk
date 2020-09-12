@@ -420,6 +420,27 @@ void setup() {
   char response[10];
   int retry=0;
   while(retry <60){
+    if(SendReceiveMsg(":e1\0", response,1)){
+      //Connection is OK
+      break;
+    }
+    retry++;
+    delay(1000);
+
+    if(retry>10){
+      //Error Beep
+      debug("Error: Mount disconnected.. \n");
+      while(1){
+        //Error
+        tone(TONE_PIN,880,500) ;
+        //noTone(TONE_PIN);
+        delay(500);
+      }       
+    }
+  }
+  //Get Extended Inquire
+  retry=0;
+  while(retry <60){
     if(SendReceiveMsg(":q3010000\0", response,1)){
       if((response[2] & 0x08)!=0x00){
         debug("Tracking mode selection....");
@@ -470,7 +491,6 @@ void setup() {
             soundSun();
             break;
           }
-          
           delay(25);
           loopc--;
         }
@@ -479,19 +499,17 @@ void setup() {
         debug("AZ Mode Only... \n");
       }
       break;
+    }else{
+      //Ignore
+      //Old Mount may not accept ExtendenInquire Command
     }
     retry++;
     delay(1000);
 
     if(retry>10){
-      //Error Beep
-      debug("Error: Mount disconnected.. \n");
-      while(1){
-        //Error
-        tone(TONE_PIN,880,500) ;
-        //noTone(TONE_PIN);
-        delay(500);
-      }       
+      //Ignore
+      //Old Mount may not accept ExtendenInquire Command
+      break;    
     }
   }
 
