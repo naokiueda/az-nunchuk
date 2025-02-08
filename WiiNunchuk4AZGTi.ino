@@ -8,6 +8,9 @@ This project depends on following external libraries.
 "ArduinoNunchuk"  http://www.gabrielbianconi.com/projects/arduinonunchuk/
 "protothreads" http://dunkels.com/adam/pt/download.html
 
+Update-2025/02/08
+Make receiving buffer longer, to adopt new messages of later firmware.
+
 CC BY 4.0
 This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
 */
@@ -417,7 +420,7 @@ void setup() {
   float baseSecPR=sediPeriod;
   int eqMode=0;
   //Get ExtendedInquire
-  char response[10];
+  char response[100];//20250208
   int retry=0;
   while(retry <60){
     if(SendReceiveMsg(":e1\0", response,1)){
