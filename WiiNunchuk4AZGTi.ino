@@ -444,7 +444,7 @@ void setup() {
   //Get Extended Inquire
   retry=0;
   while(retry <60){
-    if(SendReceiveMsg(":q3010000\0", response,1)){
+    if(SendReceiveMsg(":q1010000\0", response,1)){//20250208  :q3010000-> :q1010000
       if((response[2] & 0x08)!=0x00){
         debug("Tracking mode selection....");
         debugln();
